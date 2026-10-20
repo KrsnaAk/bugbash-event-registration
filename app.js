@@ -13,3 +13,12 @@ function render() {
   };
 }
 render();
+
+
+// Added organizer feature: capacity visibility.
+function renderCapacity() {
+  const host = document.querySelector("#app"); if (!host || document.querySelector("#capacity")) return;
+  const capacity = document.createElement("p"); capacity.id = "capacity"; capacity.className = "muted small";
+  capacity.textContent = registrations.length + "/30 places reserved"; host.querySelector("h2")?.after(capacity);
+}
+renderCapacity();

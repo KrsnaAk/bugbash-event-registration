@@ -22,3 +22,19 @@ function renderCapacity() {
   capacity.textContent = registrations.length + "/30 places reserved"; host.querySelector("h2")?.after(capacity);
 }
 renderCapacity();
+
+
+// Registration expansion: waitlist state and capacity planning.
+(() => {
+  const baseRender = render; const limit = 30; let waitlist = [];
+  const enhance = () => {
+    if (document.querySelector("#registration-tools")) return;
+    const panel = document.createElement("section"); panel.id = "registration-tools"; panel.className = "item";
+    panel.innerHTML = '<strong>Registration tools</strong><button id="waitlist" type="button">Join waitlist</button><p id="registration-summary" class="muted small"></p>';
+    document.querySelector("#app")?.append(panel);
+    panel.querySelector("#waitlist").onclick = () => { waitlist.push({ joinedAt: Date.now() }); panel.querySelector("#registration-summary").textContent = registrations.length + "/" + limit + " registered · " + waitlist.length + " waiting"; };
+    panel.querySelector("#registration-summary").textContent = registrations.length + "/" + limit + " registered · " + waitlist.length + " waiting";
+  };
+  render = () => { baseRender(); enhance(); };
+  enhance();
+})();

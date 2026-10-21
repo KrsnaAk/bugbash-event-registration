@@ -177,3 +177,37 @@ textarea {
     flex-direction: column;
   }
 }
+
+
+/* Accessible form improvements */
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid #72e7dc;
+  outline-offset: 3px;
+}
+
+input[aria-invalid="true"] {
+  border-color: #ff9eaf;
+}
+
+.error-message {
+  color: #ff9eaf;
+  font-size: 0.84rem;
+  margin: 4px 0 0;
+}
+
+#notice {
+  margin-top: 14px;
+  min-height: 20px;
+}
+
+#notice.ok {
+  color: #83e5b7;
+}
+
+#notice.danger-text {
+  color: #ff9eaf;
+}
+
